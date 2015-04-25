@@ -46,7 +46,7 @@ class Player(object):
 
 
     def is_pair_in_hand(self, hand):
-        return hand[0]["suit"] == hand[1]["suit"] and hand[0]["rank"] == hand[1]["rank"]
+        return hand[0]["rank"] == hand[1]["rank"]
 
     def should_we_fold(self, hand):
         return hand[0]["suit"] != hand[1]["suit"] and hand[0]["rank"] != hand[1]["rank"] and hand[0]["rank"] not in ["J", "K", "Q", "A"] and hand[1]["rank"] not in ["J", "K", "Q", "A"]
