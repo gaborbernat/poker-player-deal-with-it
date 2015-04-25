@@ -23,8 +23,6 @@ class Player(object):
         if r(self.game_state, ['round'], 0) < fold_until_round:
             return 0
 
-        return 0
-
         # get our cards
         ourHand = self.get_cards(self.get_our_player())
 
@@ -32,9 +30,10 @@ class Player(object):
         if self.should_we_fold(ourHand):
             bet = 0
         else:
-            mb = r(self.game_state, ['minimum_raise'], 0)
-            cb = r(self.game_state, ['current_buy_in'], 0)
-            bet = mb + cb
+            # mb = r(self.game_state, ['minimum_raise'], 0)
+            # cb = r(self.game_state, ['current_buy_in'], 0)
+            # bet = mb + cb
+            bet = self.action_raise(50)
             print('we bet {} for {}'.format(bet, self.game_state))
 
         return bet
