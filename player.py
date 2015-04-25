@@ -29,7 +29,10 @@ class Player(object):
         if self.should_we_fold(self.get_cards(self.get_our_player()), self.get_community_cards()):
             bet = 0
         else:
-            bet = self.action_raise(1)
+            if len(self.get_active_players()) == 2:
+                bet = self.action_raise(int(self.get_our_money() * 0.3))
+            else:
+                bet = self.action_raise(1)
 
         return bet
 
@@ -55,6 +58,13 @@ class Player(object):
         return r(self.game_state, ['current_buy_in'], 0) - self.get_our_player().get("bet", 0) + r(self.game_state,
                                                                                                    ['minimum_raise'],
                                                                                                    0) + amount
+    def get_active_players(self):
+        players = []
+        for player in self.game_state['players']:
+            if player["status"] == 'active':
+                players += player
+
+        return players
 
     def get_our_player(self):
         for player in self.game_state['players']:
