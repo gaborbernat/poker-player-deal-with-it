@@ -51,11 +51,14 @@ class Rank(object):
         if m > mx:
             mx = m
 
-        if mx < 5 and m == 4:
+        if mx < 5 and m > 0:
             if self.counts["A"] == 1:
                 mx += 1
 
         return mx
+    
+    def maxSameSuit(self):
+        return self.maxsuit
 
     def isStraight(self):
         ml = self.maxSeriesLength()
@@ -74,8 +77,18 @@ class Rank(object):
             return "drill"
         elif (self.max0[1] == 2 and self.max1[1] == 2):
             return "twopair"
+        elif (self.max0[1] == 2):
+            return "pair"
         else:
             return "high"
+
+    def getPossible(self):
+        if (self.maxSameSuit() == 4):
+            return "openflush"
+        elif (self.maxSeriesLength == 4):
+            return "openstraight"
+        else:
+            return "none"
 
     def dump(self):
 
@@ -83,6 +96,8 @@ class Rank(object):
         print self.max1
         print self.max2
         print "MS " + str(self.maxsuit)
+        print self.getRank();
+        print self.getPossible();
 
 
 if __name__ == '__main__':
@@ -97,7 +112,7 @@ if __name__ == '__main__':
                           "rank": "4",
                           "suit": "hearts"
                       }, {
-                          "rank": "3",
+                          "rank": "4",
                           "suit": "hearts"
                       }, {
                           "rank": "2",
