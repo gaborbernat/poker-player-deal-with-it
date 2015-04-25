@@ -1,13 +1,30 @@
 import operator
 
 
+class Ranks(object):
+    poker = 1
+    full = 2
+    flush = 3
+    straight = 4
+    drill = 5
+    two_pair = 6
+    pair = 7
+    high = 8
+    open_flush = 9
+    open_straight = 10
+    nothing = 11
+
+
 class Rank(object):
+    rank = ["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"]
+    high = ['A', 'K', 'Q', 'J', '10']
+    high_enough = ['A', 'K', 'Q', 'J', '10', '9', '8']
+
     def __init__(self, our_cards, community_cards):
         self.our_cards = our_cards
         self.community_cards = community_cards
-        self.rank = ["A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"]
         self.counts = {
-            "A": 0, "K": 0, "Q": 0, "J": 0, "T": 0, "9": 0, "8": 0, "7": 0, "6": 0, "5": 0, "4": 0, "3": 0, "2": 0
+            "A": 0, "K": 0, "Q": 0, "J": 0, "10": 0, "9": 0, "8": 0, "7": 0, "6": 0, "5": 0, "4": 0, "3": 0, "2": 0
         }
         self.suits = {
             "spades": 0,
@@ -56,7 +73,7 @@ class Rank(object):
                 mx += 1
 
         return mx
-    
+
     def maxSameSuit(self):
         return self.maxsuit
 
@@ -65,28 +82,28 @@ class Rank(object):
         return ml == 5
 
     def getRank(self):
-        if (self.max0[1] == 4):
-            return "poker"
-        elif (self.max0[1] == 3 and self.max1[1] == 2):
-            return "full"
-        elif (self.maxsuit == 5):
-            return "flush"
-        elif (self.isStraight()):
-            return "straight"
-        elif (self.max0[1] == 3):
-            return "drill"
-        elif (self.max0[1] == 2 and self.max1[1] == 2):
-            return "twopair"
-        elif (self.max0[1] == 2):
-            return "pair"
+        if self.max0[1] == 4:
+            return Ranks.poker
+        elif self.max0[1] == 3 and self.max1[1] == 2:
+            return Ranks.full
+        elif self.maxsuit == 5:
+            return Ranks.flush
+        elif self.isStraight():
+            return Ranks.straight
+        elif self.max0[1] == 3:
+            return Ranks.drill
+        elif self.max0[1] == 2 and self.max1[1] == 2:
+            return Ranks.two_pair
+        elif self.max0[1] == 2:
+            return Ranks.pair
         else:
-            return "high"
+            return Ranks.high
 
     def getPossible(self):
-        if (self.maxSameSuit() == 4):
-            return "openflush"
-        elif (self.maxSeriesLength == 4):
-            return "openstraight"
+        if self.maxSameSuit() == 4:
+            return Ranks.open_flush
+        elif self.maxSeriesLength == 4:
+            return Ranks.open_straight
         else:
             return "none"
 
@@ -96,8 +113,8 @@ class Rank(object):
         print self.max1
         print self.max2
         print "MS " + str(self.maxsuit)
-        print self.getRank();
-        print self.getPossible();
+        print self.getRank()
+        print self.getPossible()
 
 
 if __name__ == '__main__':
