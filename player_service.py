@@ -3,6 +3,7 @@ import cgi
 import json
 import BaseHTTPServer
 import os
+
 from player import Player
 
 
@@ -11,7 +12,6 @@ PORT_NUMBER = os.environ.has_key('PORT') and int(os.environ['PORT']) or 9000
 
 
 class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
-
     def do_POST(self):
 
         self.send_response(200)
@@ -34,7 +34,6 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
         else:
             game_state = {}
 
-
         response = ''
         if action == 'bet_request':
             response = Player().betRequest(game_state)
@@ -45,13 +44,14 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
 
         self.wfile.write(response)
 
+
 if __name__ == '__main__':
     server_class = BaseHTTPServer.HTTPServer
     httpd = server_class((HOST_NAME, PORT_NUMBER), PlayerService)
-    print time.asctime(), "Server Starts - %s:%s" % (HOST_NAME, PORT_NUMBER)
+    print(time.asctime(), "Server Starts - %s:%s" % (HOST_NAME, PORT_NUMBER))
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
         pass
     httpd.server_close()
-    print time.asctime(), "Server Stops - %s:%s" % (HOST_NAME, PORT_NUMBER)
+    print(time.asctime(), "Server Stops - %s:%s" % (HOST_NAME, PORT_NUMBER))
