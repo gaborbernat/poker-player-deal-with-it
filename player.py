@@ -23,6 +23,8 @@ class Player(object):
 
     def bet_request(self):
         # FOLD in the first X round of the sit n go
+        if len(self.get_active_players()) > 3:
+            return 0
         fold_until_round = 2
         us = self.get_our_player()
         if us is None:
