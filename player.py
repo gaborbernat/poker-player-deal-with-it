@@ -109,7 +109,7 @@ class Player(object):
                             high_card_second and high_card_first])
         else:
             rank = Rank(hand, community).getRank()
-            if rank in [Ranks.poker, Ranks.full, Ranks.flush, Ranks.straight, Ranks.drill]:
+            if rank in [Ranks.poker, Ranks.full, Ranks.flush, Ranks.straight, Ranks.drill, Ranks.two_pair]:
                 return False
             if rank in [Ranks.pair] and hand[0]['rank'] in Rank.high_enough_card:
                 return False
