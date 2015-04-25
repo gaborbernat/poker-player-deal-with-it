@@ -24,7 +24,10 @@ class Player(object):
     def bet_request(self):
         # FOLD in the first X round of the sit n go
         fold_until_round = 2
-        hand = self.get_cards(self.get_our_player())
+        us = self.get_our_player()
+        if us is None:
+            return 0
+        hand = self.get_cards(us)
         if r(self.game_state, ['round'], 0) < fold_until_round:
             return 0
         if self.is_pref_flop():
@@ -37,9 +40,9 @@ class Player(object):
         else:
             bet = self.bet_amount()
         if bet >= int(0.9 * self.get_our_money()):
-            r = Rank(hand, self.get_community_cards())
-            rank = r.getRank()
-            if rank in [Ranks.pair, Ranks.two_pair, Ranks.drill] and r.danger():
+            p = Rank(hand, self.get_community_cards())
+            rank = p.getRank()
+            if rank in [Ranks.pair, Ranks.two_pair, Ranks.drill] and p.danger():
                 bet = 0
             elif rank in [Ranks.pair]:
                 if hand[0]['rank'] in Rank.really_high_card \
