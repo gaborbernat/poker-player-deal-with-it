@@ -78,15 +78,15 @@ class Player(object):
     def should_we_fold(self, hand, community):
         if self.is_pref_flop():
             same_rank = hand[0]["rank"] == hand[1]["rank"]
-            high_card_first = hand[0]["rank"] in Rank.high_enough
-            high_card_second = hand[1]["rank"] in Rank.high
-            return not any([same_rank and hand[0]["rank"] in Rank.high_enough,
+            high_card_first = hand[0]["rank"] in Rank.high_enough_card
+            high_card_second = hand[1]["rank"] in Rank.high_card
+            return not any([same_rank and hand[0]["rank"] in Rank.high_enough_card,
                             high_card_second and high_card_first])
         else:
             rank = Rank(hand, community).getRank()
             if rank in [Ranks.poker, Ranks.full, Ranks.flush, Ranks.straight, Ranks.drill]:
                 return False
-            if rank in [Ranks.pair] and hand[0]['rank'] in Rank.high_enough:
+            if rank in [Ranks.pair] and hand[0]['rank'] in Rank.high_enough_card:
                 return False
             if rank in [Ranks.open_straight, Ranks.open_flush]:
                 return False

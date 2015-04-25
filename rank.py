@@ -16,9 +16,9 @@ class Ranks(object):
 
 
 class Rank(object):
-    rank = ["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"]
-    high = ['A', 'K', 'Q', 'J', '10']
-    high_enough = ['A', 'K', 'Q', 'J', '10', '9', '8']
+    cards = ["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"]
+    high_card = ['A', 'K', 'Q', 'J', '10']
+    high_enough_card = ['A', 'K', 'Q', 'J', '10', '9', '8']
 
     def __init__(self, our_cards, community_cards):
         self.our_cards = our_cards
@@ -136,6 +136,6 @@ if __name__ == '__main__':
                           "suit": "hearts"
                       }
 
-    rank = Rank(our_cards, community_cards)
-    print rank.getRank()
-    rank.dump()
+    cards = Rank(our_cards, community_cards)
+    print cards.getRank()
+    cards.dump()
