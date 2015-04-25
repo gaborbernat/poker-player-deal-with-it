@@ -5,7 +5,7 @@ class Player(object):
         self.game_state = game_state
 
     def bet_request(self):
-        bet = int(int(self.game_state['current_buy_in']) + int(self.game_state['minimum_raise']))
+        bet = int(self.game_state['pot'])*2
         print('we bet {} for {}'.format(bet, self.game_state))
         return bet
 
