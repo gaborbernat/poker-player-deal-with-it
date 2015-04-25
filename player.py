@@ -24,10 +24,10 @@ class Player(object):
             return 0
 
         # get our cards
-        ourHand = self.get_cards(self.get_our_player())
+        our_hand = self.get_cards(self.get_our_player())
 
         # should we fold
-        if self.should_we_fold(ourHand):
+        if self.should_we_fold(our_hand):
             bet = 0
         else:
             bet = self.action_raise(50)
@@ -86,15 +86,14 @@ class Player(object):
                                                                                                    0) + amount
 
 
-    # Return OUR player
     def get_our_player(self):
         for player in self.game_state['players']:
             if player["name"] == self.team_name:
                 return player
 
 
-    # Returns cards for a player json object
-    def get_cards(self, player):
+    @staticmethod
+    def get_cards(player):
         return player['hole_cards']
 
 
