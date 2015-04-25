@@ -5,8 +5,7 @@ class Player(object):
         self.game_state = game_state
 
     def bet_request(self):
-        return 0
+        return int(self.game_state['minimum_raise'])
 
     def showdown(self):
         pass
-
