@@ -79,7 +79,7 @@ class Player(object):
         if self.is_pref_flop():
             same_rank = hand[0]["rank"] == hand[1]["rank"]
             high_card_first = hand[0]["rank"] in Rank.high_enough
-            high_card_second = hand[1]["rank"] in Ranks.high
+            high_card_second = hand[1]["rank"] in Rank.high
             return not any([same_rank and hand[0]["rank"] in Rank.high_enough,
                             high_card_second and high_card_first])
         else:
