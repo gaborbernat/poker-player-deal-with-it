@@ -18,27 +18,27 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
         self.send_header("Content-type", "application/json")
         self.end_headers()
 
-        ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
-        if ctype == 'multipart/form-data':
-            postvars = cgi.parse_multipart(self.rfile, pdict)
-        elif ctype == 'application/x-www-form-urlencoded':
+        c_type, parameter_dict = cgi.parse_header(self.headers.getheader('content-type'))
+        if c_type == 'multipart/form-data':
+            post_vars = cgi.parse_multipart(self.rfile, parameter_dict)
+        elif c_type == 'application/x-www-form-urlencoded':
             length = int(self.headers.getheader('content-length'))
-            postvars = cgi.parse_qs(self.rfile.read(length), keep_blank_values=1)
+            post_vars = cgi.parse_qs(self.rfile.read(length), keep_blank_values=1)
         else:
-            postvars = {}
+            post_vars = {}
 
-        action = postvars['action'][0]
+        action = post_vars['action'][0]
 
-        if 'game_state' in postvars:
-            game_state = json.loads(postvars['game_state'][0])
+        if 'game_state' in post_vars:
+            game_state = json.loads(post_vars['game_state'][0])
         else:
             game_state = {}
 
         response = ''
         if action == 'bet_request':
-            response = Player().betRequest(game_state)
+            response = Player(game_state).bet_request
         elif action == 'showdown':
-            Player().showdown(game_state)
+            Player(game_state).showdown()
         elif action == 'version':
             response = Player.VERSION
 

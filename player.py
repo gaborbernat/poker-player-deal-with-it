@@ -1,10 +1,12 @@
-
-class Player:
+class Player(object):
     VERSION = "Default Python folding player"
 
-    def betRequest(self, game_state):
+    def __init__(self, game_state):
+        self.game_state = game_state
+
+    def bet_request(self):
         return 0
 
-    def showdown(self, game_state):
+    def showdown(self):
         pass
 
