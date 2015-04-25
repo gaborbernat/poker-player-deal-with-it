@@ -17,7 +17,7 @@ class Player(object):
         self.game_state = game_state
 
     def bet_request(self):
-
+        return 0
         # get our cards
         ourHand = self.get_cards(self.get_our_player())
 
