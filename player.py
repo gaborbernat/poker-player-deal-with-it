@@ -10,5 +10,5 @@ class Player(object):
         return bet
 
     def showdown(self):
-        print(self.game_state)
+        print('showdown {}'.format(self.game_state))
 
