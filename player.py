@@ -1,3 +1,5 @@
+import random
+
 from rank import Rank, Ranks
 
 
@@ -32,7 +34,7 @@ class Player(object):
             if len(self.get_active_players()) == 2:
                 bet = self.action_raise(int(self.get_our_money() * 0.3))
             else:
-                bet = self.action_raise(1)
+                bet = self.action_raise(random.randint(0, 2))
 
         return bet
 
@@ -58,6 +60,7 @@ class Player(object):
         return r(self.game_state, ['current_buy_in'], 0) - self.get_our_player().get("bet", 0) + r(self.game_state,
                                                                                                    ['minimum_raise'],
                                                                                                    0) + amount
+
     def get_active_players(self):
         players = []
         for player in self.game_state['players']:
