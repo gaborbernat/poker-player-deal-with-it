@@ -127,6 +127,8 @@ class Rank(object):
             return True
         if r.dangerStraight():
             return True
+        if r.getRank() in [Ranks.pair, Ranks.two_pair] and r.getRank() in [Ranks.pair]:
+            return True
         return False
 
 
