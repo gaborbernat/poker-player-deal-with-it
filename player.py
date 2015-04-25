@@ -1,3 +1,13 @@
+def r(w, i, d):
+    x = w
+    found = False
+    for k in i:
+        if k in x:
+            x = x[k]
+            found = True
+    return x if found else d
+
+
 class Player(object):
     VERSION = "Deal With It - Super awesomeness"
 
@@ -7,7 +17,9 @@ class Player(object):
         self.game_state = game_state
 
     def bet_request(self):
-        bet = int(self.game_state['pot'])*2
+        mb = r(self.game_state, ['minimum_raise'], 0)
+        cb = r(self.game_state, ['current_buy_in'], 0)
+        bet = mb + cb
         print('we bet {} for {}'.format(bet, self.game_state))
         # get our cards
         us = self.getCards(self.getOurPlayer())
