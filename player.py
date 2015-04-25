@@ -9,7 +9,7 @@ def r(w, i, d):
 
 
 class Player(object):
-    VERSION = "[DWI] YOLO"
+    VERSION = "[DWI] Conservative bot"
 
     team_name = "Deal With It"
 
@@ -30,7 +30,7 @@ class Player(object):
         if self.should_we_fold(our_hand):
             bet = 0
         else:
-            bet = self.action_raise(50)
+            bet = self.action_raise(1)
 
         return bet
 
