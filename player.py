@@ -103,8 +103,7 @@ class Player(object):
 
     @staticmethod
     def should_we_fold(hand):
-        return hand[0]["suit"] != hand[1]["suit"] and hand[0]["rank"] != hand[1]["rank"] and hand[0]["rank"] not in [
-            "J", "K", "Q", "A"] and hand[1]["rank"] not in ["J", "K", "Q", "A"]
+        return hand[0]["rank"] not in ["J", "K", "Q", "A"] and hand[1]["rank"] not in ["J", "K", "Q", "A"]
 
     def showdown(self):
         print('showdown {}'.format(self.game_state))
