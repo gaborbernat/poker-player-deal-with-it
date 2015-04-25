@@ -14,7 +14,7 @@ def r(w, i, d):
 
 
 class Player(object):
-    VERSION = "[DWI] Keeps getting better"
+    VERSION = "[DWI] No chance"
 
     team_name = "Deal With It"
 
@@ -23,19 +23,31 @@ class Player(object):
 
     def bet_request(self):
         # FOLD in the first X round of the sit n go
-        fold_until_round = 5
+        fold_until_round = 2
 
         if r(self.game_state, ['round'], 0) < fold_until_round:
             return 0
+        if self.is_pref_flop():
+            hand = self.get_cards(self.get_our_player())
+            same_rank = hand[0]["rank"] == hand[1]["rank"]
+            really_high_card = hand[0]["rank"] in Rank.really_high_card
+            if really_high_card and same_rank:
+                bet = self.action_all_in()
+            else:
+                bet = self.bet_amount()
+        else:
+            bet = self.bet_amount()
 
+        return bet
+
+    def bet_amount(self):
         if self.should_we_fold(self.get_cards(self.get_our_player()), self.get_community_cards()):
             bet = 0
         else:
             if len(self.get_active_players()) == 2:
                 bet = self.action_raise(int(self.get_our_money() * 0.3))
             else:
-                bet = self.action_raise(random.randint(0, 2))
-
+                bet = self.action_raise(random.randint(0, 3))
         return bet
 
     def get_current_bet(self):

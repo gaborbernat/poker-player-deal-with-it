@@ -17,6 +17,7 @@ class Ranks(object):
 
 class Rank(object):
     cards = ["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"]
+    really_high_card = ['A', 'K', 'Q']
     high_card = ['A', 'K', 'Q', 'J', '10']
     high_enough_card = ['A', 'K', 'Q', 'J', '10', '9', '8']
 
