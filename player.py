@@ -33,19 +33,53 @@ class Player(object):
         return bet
 
     def get_current_bet(self):
-        pass
+        """
+        Sum of all the players bets
+        :return:
+        """
+        return r(self.game_state, ['pot'], 0)
 
     def get_our_money(self):
-        pass
+        """
+        Returns the money we haven't BET yet
+
+        :return: int
+        """
+        return self.get_our_player().get("stack", 0)
+
+    def get_our_bet(self):
+        """
+        Returns the money we BET so far
+        :return:
+        """
+        return self.get_our_player().get("bet", 0)
 
     def action_check(self):
-        pass
+        """
+        Checks
+
+        :return:
+        """
+        # current buy in - our chips = check (or fold is there is another raise)
+        return r(self.game_state, ['current_buy_in'], 0) - self.get_our_player().get("bet", 0)
 
     def action_all_in(self):
-        pass
+        """
+        ALL IN
+        :return:
+        """
+        # current buy in + all the money we still have
+        return r(self.game_state, ['current_buy_in'], 0) + self.get_our_player().get("stack", 0)
 
-    def action_raise(self):
-        pass
+    def action_raise(self, amount=0):
+        """
+        Calls minimal raise + the amouns you give
+
+        :param amount: The amoun you want to raise (will be added to the minimal raise amount)
+        :return:
+        """
+        # current buy in + minimal raise + raise you want to do
+        return r(self.game_state, ['current_buy_in'], 0) - self.get_our_player().get("bet", 0) + r(self.game_state, ['minimum_raise'], 0) + amount
 
 
     # Return OUR player
