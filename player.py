@@ -105,6 +105,15 @@ class Player(object):
             same_rank = hand[0]["rank"] == hand[1]["rank"]
             high_card_first = hand[0]["rank"] in Rank.high_card
             high_card_second = hand[1]["rank"] in Rank.high_card
+
+            if hand[0]['rank'] == 'A':
+                if hand[1]['rank'] in Rank.high_enough_card:
+                    return False
+
+            if hand[1]['rank'] == 'A':
+                if hand[0]['rank'] in Rank.high_enough_card:
+                    return False
+
             return not any([same_rank and hand[0]["rank"] in Rank.high_enough_card,
                             high_card_second and high_card_first])
         else:
