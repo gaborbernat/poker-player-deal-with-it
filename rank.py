@@ -125,7 +125,7 @@ class Rank(object):
         r = Rank({}, self.community_cards)
         if r.maxSameSuit() >= 4:
             return True
-        if self.dangerStraight():
+        if r.dangerStraight():
             return True
         return False
 
