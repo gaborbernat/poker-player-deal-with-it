@@ -5,7 +5,9 @@ class Player(object):
         self.game_state = game_state
 
     def bet_request(self):
-        return int(2.5*self.game_state['minimum_raise'])
+        bet = int(2.5*self.game_state['minimum_raise'])
+        print('we bet {} for {}'.format(bet, self.game_state))
+        return bet
 
     def showdown(self):
         pass
