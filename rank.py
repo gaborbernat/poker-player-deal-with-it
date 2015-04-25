@@ -4,7 +4,7 @@ import operator
 class Rank(object):
     def __init__(self, our_cards, community_cards):
         self.our_cards = our_cards
-        self.community_cards = community_cards;
+        self.community_cards = community_cards
         self.rank = ["A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"]
         self.counts = {
             "A": 0, "K": 0, "Q": 0, "J": 0, "T": 0, "9": 0, "8": 0, "7": 0, "6": 0, "5": 0, "4": 0, "3": 0, "2": 0
@@ -58,8 +58,8 @@ class Rank(object):
         return mx
 
     def isStraight(self):
-        ml = self.maxSeriesLength();
-        return ml == 5;
+        ml = self.maxSeriesLength()
+        return ml == 5
 
     def getRank(self):
         if (self.max0[1] == 4):

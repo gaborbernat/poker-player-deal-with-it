@@ -1,3 +1,5 @@
+from rank import Rank
+
 def r(w, i, d):
     x = w
     found = False
@@ -95,6 +97,9 @@ class Player(object):
     @staticmethod
     def get_cards(player):
         return player['hole_cards']
+
+    def get_community_cards(self):
+        return r(self.game_state, ['community_cards'], [])
 
 
     @staticmethod
