@@ -30,11 +30,7 @@ class Player(object):
         if self.should_we_fold(ourHand):
             bet = 0
         else:
-            # mb = r(self.game_state, ['minimum_raise'], 0)
-            # cb = r(self.game_state, ['current_buy_in'], 0)
-            # bet = mb + cb
             bet = self.action_raise(50)
-            print('we bet {} for {}'.format(bet, self.game_state))
 
         return bet
 
@@ -85,7 +81,9 @@ class Player(object):
         :return:
         """
         # current buy in + minimal raise + raise you want to do
-        return r(self.game_state, ['current_buy_in'], 0) - self.get_our_player().get("bet", 0) + r(self.game_state, ['minimum_raise'], 0) + amount
+        return r(self.game_state, ['current_buy_in'], 0) - self.get_our_player().get("bet", 0) + r(self.game_state,
+                                                                                                   ['minimum_raise'],
+                                                                                                   0) + amount
 
 
     # Return OUR player
@@ -100,12 +98,14 @@ class Player(object):
         return player['hole_cards']
 
 
-    def is_pair_in_hand(self, hand):
+    @staticmethod
+    def is_pair_in_hand(hand):
         return hand[0]["rank"] == hand[1]["rank"]
 
-    def should_we_fold(self, hand):
-        return hand[0]["suit"] != hand[1]["suit"] and hand[0]["rank"] != hand[1]["rank"] and hand[0]["rank"] not in ["J", "K", "Q", "A"] and hand[1]["rank"] not in ["J", "K", "Q", "A"]
-
+    @staticmethod
+    def should_we_fold(hand):
+        return hand[0]["suit"] != hand[1]["suit"] and hand[0]["rank"] != hand[1]["rank"] and hand[0]["rank"] not in [
+            "J", "K", "Q", "A"] and hand[1]["rank"] not in ["J", "K", "Q", "A"]
 
     def showdown(self):
         print('showdown {}'.format(self.game_state))
