@@ -32,6 +32,21 @@ class Player(object):
 
         return bet
 
+    def get_current_bet(self):
+        pass
+
+    def get_our_money(self):
+        pass
+
+    def action_check(self):
+        pass
+
+    def action_all_in(self):
+        pass
+
+    def action_raise(self):
+        pass
+
 
     # Return OUR player
     def get_our_player(self):
