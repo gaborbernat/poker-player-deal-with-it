@@ -17,7 +17,14 @@ class Player(object):
         self.game_state = game_state
 
     def bet_request(self):
+        # FOLD in the first X round of the sit n go
+        fold_until_round = 5
+
+        if r(self.game_state, ['round'], 0) < fold_until_round:
+            return 0
+
         return 0
+
         # get our cards
         ourHand = self.get_cards(self.get_our_player())
 
