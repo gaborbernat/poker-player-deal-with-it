@@ -37,8 +37,11 @@ class Player(object):
         else:
             bet = self.bet_amount()
         if bet >= int(0.9 * self.get_our_money()):
-            rank = Rank(hand, self.get_community_cards()).getRank()
-            if rank in [Ranks.pair]:
+            r = Rank(hand, self.get_community_cards())
+            rank = r.getRank()
+            if rank in [Ranks.pair, Ranks.two_pair, Ranks.drill] and r.danger():
+                bet = 0
+            elif rank in [Ranks.pair]:
                 if hand[0]['rank'] in Rank.really_high_card \
                         and hand[1]['rank'] in Rank.really_high_card:
                     bet = self.action_all_in()

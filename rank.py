@@ -117,6 +117,18 @@ class Rank(object):
         print self.getRank()
         print self.getPossible()
 
+    def dangerStraight(self):
+        if self.maxSeriesLength() >= 4:
+            return True
+
+    def danger(self):
+        r = Rank({}, self.community_cards)
+        if r.maxSameSuit() >= 4:
+            return True
+        if self.dangerStraight():
+            return True
+        return False
+
 
 if __name__ == '__main__':
     our_cards = {
