@@ -1,5 +1,5 @@
 class Player(object):
-    VERSION = "Default Python folding player"
+    VERSION = "Deal With It - Super awesomeness"
 
     def __init__(self, game_state):
         self.game_state = game_state
