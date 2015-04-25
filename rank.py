@@ -82,19 +82,6 @@ class Rank(object):
         ml = self.maxSeriesLength()
         return ml == 5
 
-    def dangerStraight():
-        rankx.maxSeriesLength() >= 3:
-        return True;
-        
-    def danger(self):
-        rankx = Rank({}, self.community_cards)
-        if rankx.maxSameSuit() >= 4:
-            return True;
-        if rank.dangerStraight():
-            return True;
-        return False;
-        
-
     def getRank(self):
         if self.max0[1] == 4:
             return Ranks.poker
