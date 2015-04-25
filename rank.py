@@ -58,7 +58,7 @@ class Rank(object):
         mx = 0
         m = 0
 
-        for c in self.rank:
+        for c in self.cards:
             if self.counts[c] == 1:
                 m += 1
             else:
