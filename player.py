@@ -9,7 +9,7 @@ def r(w, i, d):
 
 
 class Player(object):
-    VERSION = "Deal With It - Super awesomeness"
+    VERSION = "[DWI] Okay, no more all in :)"
 
     team_name = "Deal With It"
 
